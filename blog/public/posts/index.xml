@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - 我的全新 Hugo 网站</title>
+        <link>https://xiaoyu.work/posts/</link>
+        <description>All Posts | 我的全新 Hugo 网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>gs1521adc@buaa.edu.cn (王晓宇)</managingEditor>
+            <webMaster>gs1521adc@buaa.edu.cn (王晓宇)</webMaster><lastBuildDate>Tue, 07 Mar 2023 16:48:25 &#43;0800</lastBuildDate><atom:link href="https://xiaoyu.work/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>React16.8中的effect</title>
+    <link>https://xiaoyu.work/posts/react16.8%E4%B8%AD%E7%9A%84effect/</link>
+    <pubDate>Tue, 07 Mar 2023 16:48:25 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/react16.8%E4%B8%AD%E7%9A%84effect/</guid>
+    <description><![CDATA[加入依赖是在做什么 useEffect本身是组件每次渲染都会执行的，加入effect是为了减少其执行的次数 加入空数组代表只执行一次 加入其他变量]]></description>
+</item>
+<item>
+    <title>Js函数式编程</title>
+    <link>https://xiaoyu.work/posts/js%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link>
+    <pubDate>Tue, 07 Mar 2023 16:42:38 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/js%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid>
+    <description><![CDATA[什么是函数式编程？ 数学中的函数 f(x) = y 函数必须总是接受一个参数 函数必须总是返回一个值 函数应该依据接收到的参数而不是外部环境运行 对于一个给定的x]]></description>
+</item>
+<item>
+    <title>Sort排序</title>
+    <link>https://xiaoyu.work/posts/sort%E6%8E%92%E5%BA%8F/</link>
+    <pubDate>Tue, 07 Mar 2023 16:39:32 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/sort%E6%8E%92%E5%BA%8F/</guid>
+    <description><![CDATA[Sort 为了按照某个方式进行排序，必须给sort方法传递一个比较函数，该函数决定了它的两个参数在排好序的数组中的先后顺序。假设第一个参数应该在前，]]></description>
+</item>
+<item>
+    <title>关于缓存</title>
+    <link>https://xiaoyu.work/posts/%E5%85%B3%E4%BA%8E%E7%BC%93%E5%AD%98/</link>
+    <pubDate>Tue, 07 Mar 2023 16:34:21 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/%E5%85%B3%E4%BA%8E%E7%BC%93%E5%AD%98/</guid>
+    <description><![CDATA[浏览器每次发起请求之前都会先在浏览器缓存中查找该请求的结果以及缓存标识 浏览器每次拿到返回的请求结果都会将该结果缓存和缓存表识存入浏览器缓存中]]></description>
+</item>
+<item>
+    <title>同源策略</title>
+    <link>https://xiaoyu.work/posts/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/</link>
+    <pubDate>Tue, 07 Mar 2023 16:33:01 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/</guid>
+    <description><![CDATA[关于同源策略 同源策略是一种约定，它是浏览器最核心也最基础的安全功能，如果缺少了同源策略，则浏览器的正常功能都会受到影响，可以说web是建立在]]></description>
+</item>
+<item>
+    <title>ViewPort</title>
+    <link>https://xiaoyu.work/posts/viewport/</link>
+    <pubDate>Tue, 07 Mar 2023 16:31:30 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/viewport/</guid>
+    <description><![CDATA[web前端领域，像素分为设别像素和css像素， 一个css像素的大小是可以改变的，比如用户缩放页面的时候，实际上是在缩小或者放大css像素，而]]></description>
+</item>
+<item>
+    <title>CSS一键换肤</title>
+    <link>https://xiaoyu.work/posts/css%E4%B8%80%E9%94%AE%E6%8D%A2%E8%82%A4/</link>
+    <pubDate>Tue, 07 Mar 2023 16:29:24 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/css%E4%B8%80%E9%94%AE%E6%8D%A2%E8%82%A4/</guid>
+    <description><![CDATA[[&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;].forEach(v =&gt; { const btn = document.getElementById(`${v}-theme-btn`); btn.addEventListener(&quot;click&quot;, () =&gt; document.body.style.setProperty(&quot;--bg-color&quot;, v)); }); 使用CSS变量的好处 减少样式代码的重复性 增加样式代码的扩展性 提高样式代码的灵活性 增多一种css与js的通讯方式]]></description>
+</item>
+<item>
+    <title>Linux中的文本</title>
+    <link>https://xiaoyu.work/posts/linux%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC/</link>
+    <pubDate>Tue, 07 Mar 2023 16:17:35 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/linux%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC/</guid>
+    <description><![CDATA[几个对研究Linux系统有帮助的命令 ls 列出目录内容 file确定文件类型 less浏览文件内容 其中ls可以列出多个指定目录的内容 wangxiaoyudeMacBook-Pro:~ wangxiaoyu$ ls ~ /usr /Users/wangxiaoyu: AndroidStudioProjects Music]]></description>
+</item>
+<item>
+    <title>跨域</title>
+    <link>https://xiaoyu.work/posts/%E8%B7%A8%E5%9F%9F/</link>
+    <pubDate>Tue, 07 Mar 2023 16:08:11 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/%E8%B7%A8%E5%9F%9F/</guid>
+    <description><![CDATA[JSONP 同源策略只是阻止了通过ajax技术跨域获取资源，而并没有禁止跨域获取资源本身这件事本身。 正因如此，我们可以通过&lt;link&gt;标签]]></description>
+</item>
+<item>
+    <title>字符编码与字符集</title>
+    <link>https://xiaoyu.work/posts/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E4%B8%8E%E5%AD%97%E7%AC%A6%E9%9B%86/</link>
+    <pubDate>Tue, 07 Mar 2023 14:57:29 &#43;0800</pubDate>
+    <author>王晓宇</author>
+    <guid>https://xiaoyu.work/posts/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E4%B8%8E%E5%AD%97%E7%AC%A6%E9%9B%86/</guid>
+    <description><![CDATA[字符集 字符集表示的可以是字符的一个集合，比如“中文”就是一个字符集，不过这样描述一个字集并不准确，想要更精确一点，我们可以说：“第一版《新华]]></description>
+</item>
+</channel>
+</rss>

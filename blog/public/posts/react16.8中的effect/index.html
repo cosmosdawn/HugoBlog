@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>React16.8中的effect - 我的全新 Hugo 网站</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="React16.8中的effect" />
+<meta property="og:description" content="加入依赖是在做什么 useEffect本身是组件每次渲染都会执行的，加入effect是为了减少其执行的次数 加入空数组代表只执行一次 加入其他变量" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiaoyu.work/posts/react16.8%E4%B8%AD%E7%9A%84effect/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-07T16:48:25+08:00" />
+<meta property="article:modified_time" content="2023-03-07T16:48:25+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="React16.8中的effect"/>
+<meta name="twitter:description" content="加入依赖是在做什么 useEffect本身是组件每次渲染都会执行的，加入effect是为了减少其执行的次数 加入空数组代表只执行一次 加入其他变量"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiaoyu.work/posts/react16.8%E4%B8%AD%E7%9A%84effect/" /><link rel="prev" href="https://xiaoyu.work/posts/js%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "React16.8中的effect",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiaoyu.work\/posts\/react16.8%E4%B8%AD%E7%9A%84effect\/"
+        },"genre": "posts","wordcount":  2978 ,
+        "url": "https:\/\/xiaoyu.work\/posts\/react16.8%E4%B8%AD%E7%9A%84effect\/","datePublished": "2023-03-07T16:48:25+08:00","dateModified": "2023-03-07T16:48:25+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "王晓宇"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">React16.8中的effect</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>王晓宇</a>
+</span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-07">2023-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2978 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#加入依赖是在做什么">加入依赖是在做什么</a></li>
+        <li><a href="#副作用">副作用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="加入依赖是在做什么">加入依赖是在做什么</h3>
+<p>useEffect本身是组件每次渲染都会执行的，加入effect是为了减少其执行的次数</p>
+<p>加入空数组代表只执行一次</p>
+<p>加入其他变量，表示在其改变的时候执行</p>
+<p>当你调用 useEffect时，就是在告诉 React 在完成对 DOM 的更改后运行你的“副作用”函数。</p>
+<p>useEffect是在dom更新完成后做的事情。</p>
+<p>一般来说，函数退出后，变量会销毁，而state中的变量会被react保留</p>
+<p>const [count, setCount] = useState(0);</p>
+<p>我们声明了一个叫count的state变量，然后把它设置为0。React会在重新渲染时记住它当前的值，并提供最新的值给我们的函数。</p>
+<p>之所以叫做useState而不是createState，就是我们并不是每次都create这个state变量，而是只在组件第一次渲染的时候创建。</p>
+<p>当用户点击后，我们传递一个新的值给setCount。React会重新渲染Example组件，并把最新的count传给它。</p>
+<p>如果我们想使用多个state变量，它允许我们给不同的state变量取不同的名称。</p>
+<p>我们可以单独更新每一个state。（理解： 我们单独更新一个state, react会重新渲染函数组件，并用每个state的最新值去渲染，我们更新的那个state状态，得到更新，而那些没有setState的变量，之前的值就是最新的）</p>
+<p>当我们的state变量是一个复杂的对象或者数组时，不同于class的this.setState，更新state变量总是替换而不是合并。（理解： clss组件中的setState是合并式的更新，因此我们得以单独的跟新state中的某一个值）</p>
+<h3 id="副作用">副作用</h3>
+<p>数据获取、设置订阅以及手动更改react组件中的dom都属于副作用。</p>
+<p>1、无需清除的副作用</p>
+<p>有时候，我们只想在react更新dom之后运行一些额外的代码。比如发送网络请求</p>
+<p>，手动更新dom，记录日志等。</p>
+<p>在class组件中，render函数是不应该有任何副作用的。</p>
+<p>我们基本都希望在react更新dom之后才执行我们的操作。</p>
+<p>这就是为什么我们把副作用操作放在componentDidMount 和</p>
+<p>componentDidUpdate函数中。</p>
+<p>useEffect(() =&gt; {
+document.title = you clicked ${count} times
+})</p>
+<p>通过这个hook,你可以告诉react组件需要在渲染后执行某些操作。</p>
+<p>React会保存你传递的函数（我们将它称之为effect，重点理解：effect是我们</p>
+<p>传递的函数！！！而不是useEffect这个hooks api），并且在执行dom更新</p>
+<p>之后调用它。（理解：在useEffect中我们给它传递的是一个回调函数，将我们</p>
+<p>需要的操作放在回调函数中，react会在每次更改dom后执行我们的回调函数）</p>
+<p>理解： 因为我们传递的是一个函数，而函数是一个引用数据类型的数组，</p>
+<p>所以传递给useEffect的函数在每次渲染中都会不一样，每次渲染都会有自己的</p>
+<p>回调函数（内存地址不同，不是同一个函数对象），这是刻意为之。这正是</p>
+<p>我们可以在effect中获取最新的count的值，而不用担心其过期的原因。</p>
+<p>每次我们重新渲染，都会生成新的effect，替换掉之前的（effect是我们写在useEffect中的回调函数！！）</p>
+<p>某种意义上讲effect更像是渲染结果的一部分——每个effect 属于一次特定的渲染。</p>
+<p>不理解的地方：提示
+与 componentDidMount 或 componentDidUpdate 不同，使用 useEffect 调度的 effect 不会阻塞浏览器更新屏幕，这让你的应用看起来响应更快。大多数情况下，effect 不需要同步地执行。在个别情况下（例如测量布局），有单独的 useLayoutEffect Hook 供你使用，其 API 与 useEffect 相同。</p>
+<p>是什么意思？</p>
+<p>解惑： useLayoutEffect 的函数签名与useEffect相同，但是它会在所有的DOM变更之后同步调用effect。可以使用它来读取DOM布局并同步触发重渲染。在浏览器执行绘制之前，</p>
+<p>useLayoutEffect内部的更新计划将被同步刷新。尽可能的使用标准的useEffect以避免阻塞视觉更新。</p>
+<p>useLayoutEffect与componentDidMount componentDidUpdate 的调用阶段是一样的。</p>
+<p>理解： 就是说类似vue中的nextTick componentDidMount componentDidUpdate useLayoutEffect, 会在dom更新完毕，浏览器执行绘制（肉眼看到新的页面）之前执行，如果在这里面做复杂的计算就会阻塞页面的渲染。而useEffect会在页面渲染完毕之后执行，所以不会阻塞页面的绘制渲染。</p>
+<p><a href="http://www.soolco.com/post/73226_1_1.html" target="_blank" rel="noopener noreffer">http://www.soolco.com/post/73226_1_1.html</a>
+。 // 这篇文章说的很清楚</p>
+<p>2、需要清除的effect</p>
+<p>如果你的effect返回一个函数，react将会在执行清除操作时调用它（理解：写在这里的回调函数会在react卸载的时候执行，你可以在这块空间做任何自己的操作，同样我们也是return一个函数定义给react，react会在销毁的时机去调用它）</p>
+<p>忘记正确地处理componentDidUpdate是React应用中常见的bug来源。</p>
+<p>useEffect默认就会处理，它会在调用一个新的effect之前对前一个effect进行清理。</p>
+<p>如果某些特定值在两次重新渲染之间没有发生变化，可以通知react跳过对effect的调用，只要传递数组作为useEffect的第二个参数即可。理解：所以我们传递第二个参数是为了减少effecta执行的次数。</p>
+<p>自定义hook是一个函数，函数内部可以调用其他的hook
+与React组件不同的是，自定义hook不需要具有特殊的标识。我们可以自由的决定它的参数是什么，以及它应该返回的是什么（理解： 自定义hook不必须返回 一个值和一个set值的函数，换句话说，不非要成对出现，可以自由定义返回的东西，根据需求来）</p>
+<p>在多个hook之间传递信息：</p>
+<p>由于hook本身是函数，因此我们可以在他们之间传递信息。就像下面这样：</p>
+<p>const [recipentID, setRecipentID] = useState(1);</p>
+<p>const isRecipentOnline = useFriendStatus(recipientID);</p>
+<p>当我们通过select调用setRecipentID ，改变了recipentID后，useFriendStatus也会用最新的recipientID来执行。</p>
+<p>惰性初始state</p>
+<p>initialState参数只会在组件的初始化渲染中起作用，后续渲染时会被忽略。如果初始state需要通过复杂计算获得，则可以传入一个函数，在函数中计算并返回初始的state,此函数只在初始渲染的时候被调用：</p>
+<p>const [state, setState] = useState(() =&gt; {
+const initialState = someExpensiveComputation(props);
+return initialState
+})</p>
+<p>调用state hook的更新函数并传入当前的state时，react会跳过子组件的渲染以及effect的执行，react使用Object.is比较算法来比较state.</p>
+<p>useCallback</p>
+<p>const memoizedCallback = useCallback(() =&gt; {
+doSomething(a, b);
+}, [a, b]),</p>
+<p>返回一个memoized的回调函数。</p>
+<p>把内联回调函数及依赖项数组作为参数传入useCallback,</p>
+<p>它将返回该回调函数的memoized版本，该回调函数仅仅在</p>
+<p>某个依赖项改变时才会更新。</p>
+<p>当把回调函数传递给经过优化的并使用引用相等性去避免非必要</p>
+<p>渲染的子组件时，它将非常有用。比如（shouldComponentUpdate）</p>
+<p>useCallback(fn, deps)相当于useMemo(() =&gt; fn, deps).</p>
+<p>useMemo</p>
+<p>返回一个memoized值。</p>
+<p>把创建函数和依赖项数组作为参数传入useMemo,它仅会在某个依赖改</p>
+<p>变时才会重新计算memoized值。这种优化有助于避免每次渲染时</p>
+<p>都进行高开销的计算。</p>
+<p>传入useMemo的函数会在渲染期间执行。不要在这个函数中执行与</p>
+<p>渲染无关的操作。</p>
+<p>可以把useMemo作为性能优化的手段，但不要把它作为语义上的保证。</p>
+<p>应该先编写在没有useMemo的情况下也可以执行的代码—之后再在代码中</p>
+<p>添加useMemo，以达到性能优化的目的。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-03-07</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://xiaoyu.work/posts/react16.8%E4%B8%AD%E7%9A%84effect/" data-title="React16.8中的effect" data-via="xxxx"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://xiaoyu.work/posts/react16.8%E4%B8%AD%E7%9A%84effect/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://xiaoyu.work/posts/react16.8%E4%B8%AD%E7%9A%84effect/" data-title="React16.8中的effect"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://xiaoyu.work/posts/react16.8%E4%B8%AD%E7%9A%84effect/" data-title="React16.8中的effect"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://xiaoyu.work/posts/react16.8%E4%B8%AD%E7%9A%84effect/" data-title="React16.8中的effect"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/js%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="prev" rel="prev" title="Js函数式编程"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Js函数式编程</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王晓宇</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

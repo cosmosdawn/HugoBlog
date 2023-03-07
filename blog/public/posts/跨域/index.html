@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>跨域 - 我的全新 Hugo 网站</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="跨域" />
+<meta property="og:description" content="JSONP 同源策略只是阻止了通过ajax技术跨域获取资源，而并没有禁止跨域获取资源本身这件事本身。 正因如此，我们可以通过&lt;link&gt;标签" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiaoyu.work/posts/%E8%B7%A8%E5%9F%9F/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-07T16:08:11+08:00" />
+<meta property="article:modified_time" content="2023-03-07T16:08:11+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="跨域"/>
+<meta name="twitter:description" content="JSONP 同源策略只是阻止了通过ajax技术跨域获取资源，而并没有禁止跨域获取资源本身这件事本身。 正因如此，我们可以通过&lt;link&gt;标签"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xiaoyu.work/posts/%E8%B7%A8%E5%9F%9F/" /><link rel="prev" href="https://xiaoyu.work/posts/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E4%B8%8E%E5%AD%97%E7%AC%A6%E9%9B%86/" /><link rel="next" href="https://xiaoyu.work/posts/linux%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "跨域",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xiaoyu.work\/posts\/%E8%B7%A8%E5%9F%9F\/"
+        },"genre": "posts","wordcount":  1333 ,
+        "url": "https:\/\/xiaoyu.work\/posts\/%E8%B7%A8%E5%9F%9F\/","datePublished": "2023-03-07T16:08:11+08:00","dateModified": "2023-03-07T16:08:11+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "王晓宇"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">My cool site</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">My cool site</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">跨域</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>王晓宇</a>
+</span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-07">2023-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1333 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#jsonp">JSONP</a></li>
+        <li><a href="#cors">CORS</a></li>
+        <li><a href="#简单请求">简单请求</a></li>
+        <li><a href="#非简单请求">非简单请求</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="jsonp">JSONP</h3>
+<p>同源策略只是阻止了通过ajax技术跨域获取资源，而并没有禁止跨域获取资源本身这件事本身。
+正因如此，我们可以通过<code>&lt;link&gt;</code>标签，<code>&lt;img&gt;</code>标签以及<code>&lt;script&gt;</code>标签中的<strong>href</strong>属性或<strong>src</strong>属性获取异域的<em>CSS</em>，<em>JS</em>资源和图片（虽然我们其实并不能读取这些资源的内容，所以与其是是通过<strong>src</strong>属性获取这些资源，不如说是通过<strong>src</strong>引用了这些资源</p>
+<h3 id="cors">CORS</h3>
+<p>官方推荐的跨域资源共享方案</p>
+<p>CORS是W3C颁布的一个浏览器技术规范，其全称为“跨域资源共享”（Cross-origin resource sharing），它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。它的意义在于，它是由W3C官方推广的允许通过AJAX技术跨域获取资源的规范，因此相较于JSONP而言，功能更加强大，使用起来也没有了hack的味道。</p>
+<p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request），浏览器对这两种请求的处理，是不一样的。</p>
+<p>只要同时满足以下两大条件，就属于简单请求。</p>
+<ul>
+<li>请求方法是以下三种之一：head、get、post</li>
+<li>http的头信息不超出以下几种子段：Accept、 Accept-language、 Content-Language、 Last-Event-ID、Content-Type只限于三个值： application/x-www-form-urlencoded、multipart/form-data、text/plain。</li>
+</ul>
+<p>凡是不满足上面两个条件，就属于非简单请求。</p>
+<h3 id="简单请求">简单请求</h3>
+<p>对于简单请求，浏览器直接发出CORS请求。具体来说，就是在头信息之中，增加一个Origin字段。</p>
+<!-- raw HTML omitted -->
+<p>上面的头信息中，Origin字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。
+如果Origin指定的源，不在许可范围内，服务器会返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段（详见下文），就知道出错了，从而抛出一个错误，被XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。
+如果Origin指定的域名在许可范围内，服务器返回的响应，会多出几个头信息字段。</p>
+<p><code>Access-Control-Allow-Origin: http://api.bob.com Access-Control-Allow-Credentials: true Access-Control-Expose-Headers: FooBar Content-Type: text/html; charset=utf-8 </code>
+Access-Control-Allow-Origin： 该字段是必须的。它的值要么是请求时Origin字段的值，要么是一个*，表示接受任意域名的请求。</p>
+<h3 id="非简单请求">非简单请求</h3>
+<p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。
+非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为”预检”请求（preflight）。</p>
+<p>浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-03-07</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://xiaoyu.work/posts/%E8%B7%A8%E5%9F%9F/" data-title="跨域" data-via="xxxx"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://xiaoyu.work/posts/%E8%B7%A8%E5%9F%9F/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://xiaoyu.work/posts/%E8%B7%A8%E5%9F%9F/" data-title="跨域"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://xiaoyu.work/posts/%E8%B7%A8%E5%9F%9F/" data-title="跨域"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://xiaoyu.work/posts/%E8%B7%A8%E5%9F%9F/" data-title="跨域"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E4%B8%8E%E5%AD%97%E7%AC%A6%E9%9B%86/" class="prev" rel="prev" title="字符编码与字符集"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>字符编码与字符集</a>
+            <a href="/posts/linux%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC/" class="next" rel="next" title="Linux中的文本">Linux中的文本<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">王晓宇</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
