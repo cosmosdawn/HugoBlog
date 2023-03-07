@@ -1,0 +1,8 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - Tag - 我的全新 Hugo 网站</title>
+        <link>https://xiaoyu.work/tags/</link>
+        <description>Tags - Tag - 我的全新 Hugo 网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>gs1521adc@buaa.edu.cn (王晓宇)</managingEditor>
+            <webMaster>gs1521adc@buaa.edu.cn (王晓宇)</webMaster><atom:link href="https://xiaoyu.work/tags/" rel="self" type="application/rss+xml" /></channel>
+</rss>
