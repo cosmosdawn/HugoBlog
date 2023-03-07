@@ -2,7 +2,11 @@
 title: "React16.8中的effect"
 date: 2023-03-07T16:48:25+08:00
 draft: true
+images: ![code](../../static/code.png)
+featuredImage: ![code](../../static/code.png)
 ---
+
+![code](../../static/code.png)
 
 ### 加入依赖是在做什么
 useEffect本身是组件每次渲染都会执行的，加入effect是为了减少其执行的次数

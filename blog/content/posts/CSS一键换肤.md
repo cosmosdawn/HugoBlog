@@ -2,6 +2,7 @@
 title: "CSS一键换肤"
 date: 2023-03-07T16:29:24+08:00
 draft: true
+images:
 ---
 
 	["red", "blue", "green"].forEach(v => {
